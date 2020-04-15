@@ -11,11 +11,11 @@ namespace ConsumeApi
 {
     class Program
     {
-        static string accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhcnBpdDAxMCIsImVtYWlsIjoiYXJwaXRAZ21haWwuY29tIiwianRpIjoiMjhkMzczNGMtYjBiZC00ODcwLWE0ZDMtNTAyMWJmYzc2N2I1IiwiZXhwIjoxNTg2OTE4MjgzLCJpc3MiOiJodHRwczovL2Rldi1nZzl4d3lkNC5hdXRoMC5jb20vYXBpL3YyLyIsImF1ZCI6Imh0dHBzOi8vZGV2LWdnOXh3eWQ0LmF1dGgwLmNvbS9hcGkvdjIvIn0.2qfA-__MEp-R_-DFJEyh5yzoN2qlu8EtBxG9k9eKfZs";
+        static string accessToken = string.Empty;//"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhcnBpdDAxMCIsImVtYWlsIjoiYXJwaXRAZ21haWwuY29tIiwianRpIjoiMjhkMzczNGMtYjBiZC00ODcwLWE0ZDMtNTAyMWJmYzc2N2I1IiwiZXhwIjoxNTg2OTE4MjgzLCJpc3MiOiJodHRwczovL2Rldi1nZzl4d3lkNC5hdXRoMC5jb20vYXBpL3YyLyIsImF1ZCI6Imh0dHBzOi8vZGV2LWdnOXh3eWQ0LmF1dGgwLmNvbS9hcGkvdjIvIn0.2qfA-__MEp-R_-DFJEyh5yzoN2qlu8EtBxG9k9eKfZs";
         static string baseurl = "https://localhost:44302/api"; //
         static void Main(string[] args)
         {
-            // LoginAsync();
+             LoginAsync().Wait();
             ConsumeApiTest().Wait();
             ConsumeApiTest2().Wait();
         }
@@ -88,15 +88,17 @@ namespace ConsumeApi
                 //postData.Add(new KeyValuePair<string, string>("client_secret", clientSecret));
 
                 FormUrlEncodedContent content = new FormUrlEncodedContent(postData);
-
+                //var json = JsonConvert.SerializeObject("");
+                //var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json"); //
                 // Post to the Server and parse the response.
-                HttpResponseMessage response = await client.GetAsync("https://localhost:44302/api/Login");
+                HttpResponseMessage response = await client.GetAsync("https://localhost:44302/api/Login/");
                 string jsonString = await response.Content.ReadAsStringAsync();
                 object responseData = JsonConvert.DeserializeObject(jsonString);
 
                 // return the Access Token.
                 //return ((dynamic)responseData).access_token;
-                accessToken = ((dynamic)responseData).access_token;
+               var json = Newtonsoft.Json.Linq.JObject.Parse(jsonString);
+                accessToken = json["token"].ToString();
             }
         }
     }
