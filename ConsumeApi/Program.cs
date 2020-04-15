@@ -12,7 +12,7 @@ namespace ConsumeApi
     class Program
     {
         static string accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhcnBpdDAxMCIsImVtYWlsIjoiYXJwaXRAZ21haWwuY29tIiwianRpIjoiMjhkMzczNGMtYjBiZC00ODcwLWE0ZDMtNTAyMWJmYzc2N2I1IiwiZXhwIjoxNTg2OTE4MjgzLCJpc3MiOiJodHRwczovL2Rldi1nZzl4d3lkNC5hdXRoMC5jb20vYXBpL3YyLyIsImF1ZCI6Imh0dHBzOi8vZGV2LWdnOXh3eWQ0LmF1dGgwLmNvbS9hcGkvdjIvIn0.2qfA-__MEp-R_-DFJEyh5yzoN2qlu8EtBxG9k9eKfZs";
-        static string baseurl = "https://localhost:44302/api";
+        static string baseurl = "https://localhost:44302/api"; //
         static void Main(string[] args)
         {
             // LoginAsync();
