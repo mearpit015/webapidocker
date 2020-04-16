@@ -91,7 +91,7 @@ namespace webapidocker.Controllers
             IList<Claim> claim = identity.Claims.ToList();
             var userName = claim[0].Value;
 
-            return "Welcome :" + userName;
+            return "Welcome : " + userName;
         }
 
        [Authorize] 
